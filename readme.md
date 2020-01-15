@@ -1,7 +1,28 @@
-Parameters needed to be set
-In dev create .env file:
+# Webtemplate
+This gives a quick boilerplate to build a website with login capability!
 
-PORT=***
-PROJECT=***
-MONGO_DB_URI=***
-SESSION_SECRET=***
+## Requirements
+Create a .env file with the following variables:
+
+ - PORT=***
+ - PROJECT=***
+ - MONGO_DB_URI=***
+ - SESSION_SECRET=***
+
+PROJECT variable is used for html header and Navbar Brand.
+
+## Installation
+```bash
+npm i
+```
+
+## Usage
+```bash
+npm run dev
+```
+
+or
+
+```bash
+npm start
+```
