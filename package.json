@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "grunt": "grunt all"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +24,17 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.2"
-  }
+    "grunt": "^1.0.4",
+    "grunt-postcss": "^0.9.0",
+    "grunt-sass": "2.1.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
+    "pixrem": "^5.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
