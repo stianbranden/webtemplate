@@ -11,6 +11,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
+const passport = require('passport');
+
+const initializePassport = require('./config/passport');
+initializePassport(passport);
 
 const rootRoute = require('./routes/root');
 const usersRoute = require('./routes/users');
@@ -21,7 +25,9 @@ app.use(ejsLayouts);
 //Middleware
 let sess = {
   secret: process.env.SESSION_SECRET,
-  cookie: {}
+  cookie: {},
+  resave: false,
+  saveUninitialized: false
 }
 
 if (app.get('env') === 'production') {
@@ -35,6 +41,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //Routes
 app.use('/', rootRoute);

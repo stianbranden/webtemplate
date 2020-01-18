@@ -11,3 +11,7 @@ body {
   color: white;
   text-decoration: underline;
 }
+
+nav .icon {
+  font-size: 150%;
+}

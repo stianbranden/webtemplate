@@ -2,17 +2,22 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const {
+  checkAuthenticated,
+  checkNotAuthenticated
+} = require('../config/authenticationChecks');
 
 let projectName = process.env.PROJECT;
 
 
-router.get('/', (req,res)=>{
+router.get('/', checkAuthenticated,  (req,res)=>{
   res.render('users', {
     projectName
   });
 });
 
-router.post('/', async (req, res)=>{
+router.post('/', checkAuthenticated, async (req, res)=>{
   let {name, email, password} = req.body;
   console.log(req.body);
   if (password !== req.body.password2){
@@ -40,16 +45,33 @@ router.post('/', async (req, res)=>{
     console.error('Failed to save user', error);
     res.render('register', {projectName, form: {name, email}});
   }
-
-
 });
 
-router.get('/register', (req, res)=>{
+router.get('/register', checkNotAuthenticated,  (req, res)=>{
   console.log('Here is the flash', req.flash());
   res.render('register', {
     projectName,
     form: {}
   });
+});
+
+router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/',
+  failureFlash: true
+}))
+
+router.get('/logout', checkAuthenticated, (req, res)=>{
+  req.flash('info', 'Logged out, welcome back!');
+  req.logOut();
+  res.redirect('/');
+});
+
+router.get('/me', checkAuthenticated, (req, res)=>{
+  res.render('user', {
+    projectName,
+    user: req.user
+  })
 });
 
 
