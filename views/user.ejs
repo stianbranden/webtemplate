@@ -1,3 +1,31 @@
 <div class="container">
-  Settings for <%= user.name %>
+  <div class="card">
+    <div class="card-header">
+      <%= user.name %>
+    </div>
+    <div class="card-body">
+      <div class="input-group mb-3 hide">
+        <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.id %>">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">E-mail</span>
+        </div>
+        <input disabled type="text" class="form-control" name="email" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.email %>">
+      </div>
+
+
+
+      <div class="input-group mb-3" id="name-group">
+        <div class="input-group-prepend" id="name-prepend">
+          <span class="input-group-text" id="basic-addon2">Name</span>
+        </div>
+        <input disabled id="name" type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" value="<%= user.name %>">
+        <button class="btn btn-info input-edit-btn" id="edit-name"><i class="icon ion-md-create"></i></button>
+        <button class="btn-hide btn btn-outline-danger input-cancel-btn" id="cancel-name"><i class="icon ion-md-close"></i></button>
+        <button class="btn-hide btn btn-outline-success input-save-btn" id="save-name"><i class="icon ion-md-checkmark"></i></button>
+      </div>
+
+    </div>
+  </div>
 </div>

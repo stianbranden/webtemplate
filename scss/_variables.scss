@@ -35,13 +35,13 @@ $grays: map-merge(
 );
 
 $blue:    #0c4b7b !default; //#007bff !default;
-$indigo:  #6610f2 !default;
+$indigo:  #2E1384 !default;//#6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #fc5c7c !default;//#dc3545 !default;
+$red:     #BF0707 !default;//#dc3545 !default;
 $orange:  #fd7e14 !default;
-$yellow:  #fccc04 !default;//#ffc107 !default;
-$green:   #3a635c !default; //#28a745 !default;
+$yellow:  #BF9F07 !default;//#ffc107 !default;
+$green:   #059905 !default; //#28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 $beige:   #967e69 !default;
@@ -69,13 +69,13 @@ $colors: map-merge(
 );
 
 $primary:       $blue !default;
-$secondary:     #9db9cd !default;//$gray-600 !default;
+$secondary:     $indigo !default;//$gray-600 !default;
 $success:       $green !default;
-$info:          #618aa9 !default;//$cyan !default;
+$info:          $gray-300 !default;//$cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$light:         scale-color($primary, $lightness: 80%) !default;//$gray-100 !default;
+$dark:          scale-color($primary, $lightness: -10%) !default;//$gray-800 !default;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default

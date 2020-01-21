@@ -15,3 +15,31 @@ body {
 nav .icon {
   font-size: 150%;
 }
+
+.input-edit-btn {
+  border-width: 1px 1px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-cancel-btn {
+  border-width: 1px 0px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-radius: 0;
+}
+.input-save-btn {
+  border-width: 1px 1px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-hide {
+  display: none;
+}
+
+.hide {
+  display: none;
+}

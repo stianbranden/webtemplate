@@ -18,6 +18,7 @@ initializePassport(passport);
 
 const rootRoute = require('./routes/root');
 const usersRoute = require('./routes/users');
+const apiUsersRoute = require('./routes/api/users');
 
 //EJS
 app.set('view engine', 'ejs');
@@ -48,6 +49,7 @@ app.use(passport.session());
 //Routes
 app.use('/', rootRoute);
 app.use('/users', usersRoute);
+app.use('/api/users', apiUsersRoute);
 
 //Mongo connection
 mongoose.connect(process.env.MONGO_DB_URI, {
