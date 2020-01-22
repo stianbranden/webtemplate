@@ -43,3 +43,7 @@ nav .icon {
 .hide {
   display: none;
 }
+
+.input-group-prepend > span{
+  min-width: 100px;
+}
