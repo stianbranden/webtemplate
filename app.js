@@ -31,13 +31,15 @@ let sess = {
   saveUninitialized: false
 }
 
-if (app.get('env') === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
 app.use(session(sess))
 app.use(flash());
-app.use(morgan('common'));
+if (process.env.NODE_ENV !== 'production'){
+  app.use(morgan('common'));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
