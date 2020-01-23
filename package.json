@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app.js",
-    "grunt": "grunt all"
+    "grunt": "grunt"
   },
   "keywords": [],
   "author": "",
@@ -38,5 +38,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "engine": {
+    "node": "8.12.0"
+  }
 }
