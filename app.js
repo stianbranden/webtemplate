@@ -56,7 +56,8 @@ app.use('/api/users', apiUsersRoute);
 //Mongo connection
 mongoose.connect(process.env.MONGO_DB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

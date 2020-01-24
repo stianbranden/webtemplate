@@ -17,7 +17,7 @@ router.get('/', checkAuthenticated,  (req,res)=>{
   });
 });
 
-router.post('/', checkAuthenticated, async (req, res)=>{
+router.post('/', checkNotAuthenticated, async (req, res)=>{
   let {name, email, password} = req.body;
   console.log(req.body);
   if (password !== req.body.password2){
@@ -48,7 +48,6 @@ router.post('/', checkAuthenticated, async (req, res)=>{
 });
 
 router.get('/register', checkNotAuthenticated,  (req, res)=>{
-  console.log('Here is the flash', req.flash());
   res.render('register', {
     projectName,
     form: {}

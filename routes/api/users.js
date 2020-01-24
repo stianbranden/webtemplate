@@ -25,17 +25,20 @@ router.put('/', checkAuthenticated, async (req, res)=>{
     }
   }
   //console.log(body);
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(body.password, salt);
-  body.password = hash;
+
   try {
+    if (body.password){
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(body.password, salt);
+      body.password = hash;
+    }
     let updatedUser = await User.findByIdAndUpdate(id, body, {new:true}).exec();
     res.json({
       msg: 'Success',
       updatedUser
     })
   } catch (e) {
-    res.status(500).json({msg:'Failed to save user'});
+    res.status(500).json({msg:'Failed to update user'});
   }
 });
 
