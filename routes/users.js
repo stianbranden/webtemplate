@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+const Project = require('../models/projects');
+const ProjectMembership = require('../models/projectMemberships');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const {
@@ -19,7 +21,7 @@ router.get('/', checkAuthenticated,  (req,res)=>{
 
 router.post('/', checkNotAuthenticated, async (req, res)=>{
   let {name, email, password} = req.body;
-  console.log(req.body);
+  //console.log(req.body);
   if (password !== req.body.password2){
     req.flash('warning', 'Passwords do not match');
     return res.render('register', {projectName, form: {name, email}});
@@ -33,11 +35,25 @@ router.post('/', checkNotAuthenticated, async (req, res)=>{
     }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    await new User({
+    const user = await new User({
       name,
       email,
       password: hash
     }).save();
+    const privateProject = await new Project({
+      name: name + " - Private project",
+      description: "Automatically generated private project for user " + email,
+      projectType: 'Private',
+      owner: user._id
+    }).save();
+
+    const publicProject = await new Project({
+      name: name + " - Public project",
+      description: "Automatically generated public project for user " + email,
+      projectType: 'Public',
+      owner: user._id
+    }).save();
+    const memberships = await ProjectMembership.add([user._id], [privateProject._id, publicProject._id]);
     console.log('Created user with email: ' + email);
     req.flash('info', 'User created');
     res.redirect('/');

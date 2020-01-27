@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <% data.forEach(project=>{
+      let icon = 'icon ion-md-contacts';
+      switch(project.projectType){
+        case 'Private':
+          icon = 'icon ion-md-lock';
+          break;
+        case 'Public':
+          icon = 'icon ion-md-globe';
+          break;
+      }
+      let border = '';
+      switch (user._id) {
+        case project.owner._id:
+          border = ' border border-warning';
+          break;
+      }
+      %>
+      <div class="col-sm-12 col-md-6">
+        <div class="card">
+          <div class="card-header grid-2-1<%= border %>"><div class="text-left"><%= project.name %></div><div class="text-right"><i class="<%= icon %>"></i></div></div>
+          <div class="card-body">
+            <div class="card-text grid-1-2">
+              <p class="lead">Description</p><p><%= project.description %></p>
+              <p class="lead">Owner</p><p><%= project.owner.name %></p>
+            </div>
+            <div class="text-right">
+              <a href="/projects/<%= project._id %>" class="btn btn-sm btn-outline-secondary">
+                <i class="icon ion-md-create"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <% }) %>
+
+  </div>
+</div>

@@ -47,3 +47,12 @@ nav .icon {
 .input-group-prepend > span{
   min-width: 100px;
 }
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
