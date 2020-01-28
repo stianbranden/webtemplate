@@ -10,6 +10,7 @@ const ejsLayouts = require('express-ejs-layouts');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const flash = require('express-flash');
 const passport = require('passport');
 
@@ -35,6 +36,7 @@ let sess = {
 if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
+  sess.store = new RedisStore({url: process.env.REDIS_URL});
 }
 app.use(session(sess))
 app.use(flash());
