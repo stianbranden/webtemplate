@@ -24,7 +24,8 @@
     "mongoose": "^5.8.6",
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.4",

@@ -10,6 +10,7 @@ const ejsLayouts = require('express-ejs-layouts');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const flash = require('express-flash');
 const passport = require('passport');
