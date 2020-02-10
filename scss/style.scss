@@ -1,0 +1,116 @@
+body {
+
+}
+
+.footer-copyright > a {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: underline;
+}
+
+nav .icon {
+  font-size: 150%;
+}
+
+.input-edit-btn {
+  border-width: 1px 1px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-cancel-btn {
+  border-width: 1px 0px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-radius: 0;
+}
+.input-save-btn {
+  border-width: 1px 1px 1px 0;
+  border-color: #ced4da;
+  border-style: solid;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-hide {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.input-group-prepend > span{
+  min-width: 100px;
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.master-grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-rows: 0.5fr 4fr 2fr 0.5fr;
+  grid-template-areas:
+    "header nav nav"
+    "main main sidebar"
+    "sub sub sidebar"
+    "footer footer sidebar";
+
+  section.main {
+    grid-area: main;
+
+    .jumbotron {
+      border-radius: 0;
+    }
+    .card {
+      border-radius: 0;
+    }
+  }
+
+  section.sidebar {
+    grid-area: sidebar;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+
+  section.sub {
+    grid-area: sub;
+  }
+
+  header {
+    grid-area: header;
+    display: flex;
+  }
+
+  header a {
+    flex: 1;
+
+  }
+
+
+  nav {
+    grid-area: nav;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+
+}

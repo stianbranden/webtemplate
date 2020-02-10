@@ -1,28 +1,35 @@
-//Start script to update users
 
-$('#edit-name').click(()=>{
-  toggleButtons('name')
+$('.input-edit-btn').click(function(){
+  let item = $(this).attr('id').split('-')[1];
+  toggleButtons(item);
 });
 
-$('#cancel-name').click(()=>{
-  toggleButtons('name')
+$('.input-cancel-btn').click(function(){
+  let item = $(this).attr('id').split('-')[1];
+  toggleButtons(item);
 });
 
-$('#save-name').click(()=>{
+$('.input-save-btn').click(function(){
+  let item = $(this).attr('id').split('-')[1];
+  let idField = $('#id-field');
+  let data = {
+    "id": idField.val()
+  }
+  data[item] = $('#' + item).val();
+  if ( item === 'password' ){
+    data.password2 = $('#password2').val();
+  }
   $.ajax({
     type: "PUT",
-    url: "/api/users/",
-    data: {
-      "id": $('#id-field').val(),
-      "name": $('#name').val()
-    },
+    url: idField.attr('data-url'),
+    data,
     dataType: "json"
   })
   .done((data)=>{
     console.log(data);
-    $('#name').val(data.updatedUser.name);
-    toggleButtons('name');
-    removeErrorAlert('name');
+    $('#' + item).val(data.update[item]);
+    toggleButtons(item);
+    removeErrorAlert(item);
   })
   .fail((err)=>{
     console.log(err);
@@ -31,38 +38,6 @@ $('#save-name').click(()=>{
 
 });
 
-
-$('#edit-password').click(()=>{
-  toggleButtons('password')
-});
-
-$('#cancel-password').click(()=>{
-  toggleButtons('password')
-});
-
-$('#save-password').click(()=>{
-  $.ajax({
-    type: "PUT",
-    url: "/api/users/",
-    data: {
-      "id": $('#id-field').val(),
-      "password": $('#password').val(),
-      "password2": $('#password2').val()
-    },
-    dataType: "json"
-  })
-  .done((data)=>{
-    console.log(data);
-    $('#password').val(data.updatedUser.name);
-    toggleButtons('password');
-    removeErrorAlert('password');
-  })
-  .fail((err)=>{
-    console.log(err);
-    addErrorAlert('password', err.responseJSON.msg);
-  });
-
-});
 
 function toggleButtons(item){
   $('#edit-' + item).toggleClass('btn-hide');
@@ -91,4 +66,3 @@ function removeErrorAlert(item){
     alert.remove();
   }
 }
-//End script to update users

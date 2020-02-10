@@ -22,6 +22,7 @@ const rootRoute = require('./routes/root');
 const usersRoute = require('./routes/users');
 const apiUsersRoute = require('./routes/api/users');
 const projectsRoute = require('./routes/projects');
+const apiProjectsRoute = require('./routes/api/projects');
 
 //EJS
 app.set('view engine', 'ejs');
@@ -57,6 +58,7 @@ app.use('/', rootRoute);
 app.use('/users', usersRoute);
 app.use('/projects', projectsRoute);
 app.use('/api/users', apiUsersRoute);
+app.use('/api/projects', apiProjectsRoute);
 
 //Mongo connection
 mongoose.connect(process.env.MONGO_DB_URI, {

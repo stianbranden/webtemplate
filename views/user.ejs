@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <div class="input-group mb-3 hide">
-        <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.id %>">
+        <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.id %>" data-url="/api/users/">
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -47,3 +47,6 @@
     </div>
   </div>
 </div>
+
+
+<script defer src="/javascript/user.js"></script>

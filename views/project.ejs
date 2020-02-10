@@ -1,10 +1,60 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-header"><%= project.name %></div>
-        <div class="card-body"></div>
+<% let icon = 'icon ion-md-contacts';
+  switch(project.projectType){
+    case 'Private':
+      icon = 'icon ion-md-lock';
+      break;
+    case 'Public':
+      icon = 'icon ion-md-globe';
+      break;
+  }
+  let border = '';
+  switch (user._id) {
+    case project.owner._id:
+      border = ' border border-warning';
+      break;
+  }
+  %>
+<section class="main">
+  <div class="card">
+    <div class="card-header grid-2-1"><div class="text-left">Edit project</div><div class="text-right"><i class="<%= icon %>"></i></div></div>
+    <div class="card-body">
+      <div class="input-group mb-3 hide">
+        <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= project.id %>" data-url="/api/projects/">
       </div>
+      <div class="input-group mb-3" id="name-group">
+        <div class="input-group-prepend" id="name-prepend">
+          <span class="input-group-text" id="basic-addon2">Project name</span>
+        </div>
+        <input disabled id="name" type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" value="<%= project.name %>">
+        <button class="btn btn-info input-edit-btn" id="edit-name"><i class="icon ion-md-create"></i></button>
+        <button class="btn-hide btn btn-outline-danger input-cancel-btn" id="cancel-name"><i class="icon ion-md-close"></i></button>
+        <button class="btn-hide btn btn-outline-success input-save-btn" id="save-name"><i class="icon ion-md-checkmark"></i></button>
+      </div>
+      <div class="input-group mb-3" id="description-group">
+        <div class="input-group-prepend" id="description-prepend">
+          <span class="input-group-text" id="basic-addon2">Description</span>
+        </div>
+        <textarea rows="4" disabled id="description" type="textarea" class="form-control" name="description" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1"><%= project.description %></textarea>
+      </div>
+      <div class="input-group mb-3" id="type-group">
+        <div class="input-group-prepend" id="type-prepend">
+          <span class="input-group-text" id="basic-addon2">Project type</span>
+        </div>
+        <input disabled id="type" type="text" class="form-control" name="type" placeholder="Type" aria-label="Type" aria-describedby="basic-addon1" value="<%= project.projectType %>">
+      </div>
+      <div class="input-group mb-3" id="owner-group">
+        <div class="input-group-prepend" id="owner-prepend">
+          <span class="input-group-text" id="basic-addon2">Owner</span>
+        </div>
+        <input disabled id="owner" type="text" class="form-control" name="owner" placeholder="Owner" aria-label="Owner" aria-describedby="basic-addon1" value="<%= project.owner.name %>">
+      </div>
+
     </div>
   </div>
-</div>
+</section>
+<section class="sub">
+  <p class="lead">Here is some added stuff</p>
+</section>
+<section class="sidebar">
+  <p class="lead">Sidebar stuff</p>
+</section>

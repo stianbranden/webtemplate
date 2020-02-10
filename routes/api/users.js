@@ -32,10 +32,10 @@ router.put('/', checkAuthenticated, async (req, res)=>{
       const hash = await bcrypt.hash(body.password, salt);
       body.password = hash;
     }
-    let updatedUser = await User.findByIdAndUpdate(id, body, {new:true}).exec();
+    let update = await User.findByIdAndUpdate(id, body, {new:true}).exec();
     res.json({
       msg: 'Success',
-      updatedUser
+      update
     })
   } catch (e) {
     res.status(500).json({msg:'Failed to update user'});

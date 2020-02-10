@@ -39,7 +39,7 @@ router.get('/:id', checkAuthenticated, async (req, res)=>{
   let id = req.params.id;
   const user = req.user;
   try {
-    const project = await Project.findById(id);
+    const project = await Project.findById(id).populate({path: 'owner'});
     res.render('project', {projectName, project, user})
   } catch (e) {
     console.log(e);
