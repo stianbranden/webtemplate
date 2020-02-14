@@ -3,6 +3,9 @@
 @each $color, $value in $theme-colors {
   @include bg-variant(".bg-#{$color}", $value, true);
 }
+@each $color, $value in $colors {
+  @include bg-variant(".bg-#{$color}", $value, true);
+}
 
 @if $enable-gradients {
   @each $color, $value in $theme-colors {

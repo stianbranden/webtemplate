@@ -24,6 +24,25 @@ module.exports = function(grunt){
       dist: {
         src: 'public/css/*.css'
       }
+    },
+    watch: {
+      sass: {
+        files: ['scss/*.scss','scss/mixins/*.scss', 'scss/utilities/*.scss'],
+        tasks: ['sass', 'postcss']
+      }
+    },
+    nodemon: {
+      dev: {
+        script: 'app.js'
+      }
+    },
+    concurrent: {
+      target:{
+        tasks: ['watch', 'nodemon'],
+  			options: {
+  				logConcurrentOutput: true
+  			}
+      }
     }
   });
 
@@ -31,8 +50,11 @@ module.exports = function(grunt){
   //load npm
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-nodemon');
 
 
   //Register tasks
-  grunt.registerTask('default', ['sass', 'postcss'])
+  grunt.registerTask('default', ['sass', 'postcss', 'concurrent:target'])
 }

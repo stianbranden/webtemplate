@@ -22,6 +22,11 @@ const projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
+  },
+  color: {
+    type: String,
+    required: true,
+    default: 'grey'
   }
 });
 

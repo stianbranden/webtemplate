@@ -1,5 +1,7 @@
   <header class="bg-primary navbar navbar-dark">
-    <a class="navbar-brand text-left" href="#"><%= projectName %></a>
+    <a class="navbar-brand text-left" href="#"><%= projectName %>
+      <i class="icon ion-md-square-outline text-white mr-1"></i><i class="icon ion-md-checkbox-outline text-green mr-1"></i><i class="icon ion-md-square-outline text-white mr-1"></i>
+    </a>
   </header>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
@@ -9,6 +11,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if (locals.user != null) { %>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
@@ -20,6 +23,7 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
+        <% } %>
         <% if (locals.user == null) { %>
         <form class="form-inline my-2 my-lg-0" action="/users/login" method="POST">
           <input class="form-control mr-sm-2" type="email" placeholder="Email" aria-label="Email" name="email">
@@ -27,8 +31,9 @@
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">LogIn</button>
         </form>
         <a href="/users/register" class="ml-2 btn btn-outline-warning">Register</a>
-      </div>
+
       <% } else { %>
+
         <span class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="icon ion-md-contact text-light"></i>
@@ -39,5 +44,5 @@
           </div>
         </span>
       <% } %>
-
+    </div>
   </nav>

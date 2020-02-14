@@ -13,10 +13,15 @@
       border = ' border border-warning';
       break;
   }
+  var colors = ['blue', 'indigo', 'purple', 'pink', 'red', 'orange', 'yellow', 'green', 'teal', 'cyan', 'gray', 'gray-dark', 'beige'];
+  let selectColorBg = '';
+  if (project.color==='white'){
+    selectColorBg = ' bg-gray-dark';
+  }
   %>
 <section class="main">
   <div class="card">
-    <div class="card-header grid-2-1"><div class="text-left">Edit project</div><div class="text-right"><i class="<%= icon %>"></i></div></div>
+    <div class="card-header grid-2-1 border-<%= project.color %>"><div class="text-left">Edit project</div><div class="text-right" title="<%= project.projectType %> project"><i class="<%= icon %>"></i></div></div>
     <div class="card-body">
       <div class="input-group mb-3 hide">
         <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= project.id %>" data-url="/api/projects/">
@@ -32,9 +37,12 @@
       </div>
       <div class="input-group mb-3" id="description-group">
         <div class="input-group-prepend" id="description-prepend">
-          <span class="input-group-text" id="basic-addon2">Description</span>
+          <span class="input-group-text area-label" id="basic-addon2">Description</span>
         </div>
         <textarea rows="4" disabled id="description" type="textarea" class="form-control" name="description" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1"><%= project.description %></textarea>
+        <button class="btn btn-info input-edit-btn" id="edit-description"><i class="icon ion-md-create"></i></button>
+        <button class="btn-hide btn btn-outline-danger input-cancel-btn" id="cancel-description"><i class="icon ion-md-close"></i></button>
+        <button class="btn-hide btn btn-outline-success input-save-btn" id="save-description"><i class="icon ion-md-checkmark"></i></button>
       </div>
       <div class="input-group mb-3" id="type-group">
         <div class="input-group-prepend" id="type-prepend">
@@ -47,13 +55,52 @@
           <span class="input-group-text" id="basic-addon2">Owner</span>
         </div>
         <input disabled id="owner" type="text" class="form-control" name="owner" placeholder="Owner" aria-label="Owner" aria-describedby="basic-addon1" value="<%= project.owner.name %>">
+        <% if (project.projectType !== 'Private' && project.projectType !== 'Public'){ %>
+          <button class="btn btn-info input-edit-btn" id="edit-owner"><i class="icon ion-md-create"></i></button>
+          <button class="btn-hide btn btn-outline-danger input-cancel-btn" id="cancel-owner"><i class="icon ion-md-close"></i></button>
+          <button class="btn-hide btn btn-outline-success input-save-btn" id="save-owner"><i class="icon ion-md-checkmark"></i></button>
+        <% } %>
       </div>
 
+      <div class="input-group mb-3" id="color-group">
+        <div class="input-group-prepend" id="colorend">
+          <span class="input-group-text" id="basic-addon2">Owner</span>
+        </div>
+        <select name="color" id="color" class="custom-select text-<%= project.color %><%= selectColorBg %>" disabled>
+          <% colors.forEach(c=>{
+            let sel = "";
+            let bg = ""
+            if ( c === project.color){ sel = " selected"}
+            if ( c === 'white'){ bg = ' bg-gray-dark' } %>
+            <option class="text-<%= c %><%= bg %>" value="<%= c %>"<%= sel %>><%= c %></option>
+          <% }) %>
+        </select>
+        <button class="btn btn-info input-edit-btn" id="edit-color"><i class="icon ion-md-create"></i></button>
+        <button class="btn-hide btn btn-outline-danger input-cancel-btn" id="cancel-color"><i class="icon ion-md-close"></i></button>
+        <button class="btn-hide btn btn-outline-success input-save-btn" id="save-color"><i class="icon ion-md-checkmark"></i></button>
+      </div>
+
+
+      <hr>
+      <div class="members">
+        <p class="lead">Members</p>
+        <% if (project.projectType === 'Private' || project.projectType === 'Public' ){%>
+          <p class="text-muted">Public or private projects cannot have other members than the owner.<br>Create a Team project to start collaborating</p>
+        <%} %>
+      </div>
     </div>
   </div>
 </section>
-<section class="sub">
-  <p class="lead">Here is some added stuff</p>
+<section class="sub bg-dark text-white-50">
+  <div class="pt-4 text-center">
+    <p class="lead m-0">Actions</p>
+    <p>
+      <a href="#" class="btn btn-success">Create knowledge</a>
+      <a href="#" class="btn btn-success">Create checklist</a>
+      <a href="#" class="btn btn-success">Create action</a>
+      <a href="#" class="btn btn-danger">Delete project</a>
+    </p>
+  </div>
 </section>
 <section class="sidebar">
   <p class="lead">Sidebar stuff</p>

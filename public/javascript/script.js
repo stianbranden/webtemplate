@@ -30,6 +30,9 @@ $('.input-save-btn').click(function(){
     $('#' + item).val(data.update[item]);
     toggleButtons(item);
     removeErrorAlert(item);
+    if ( item === 'color' ){
+      location.reload();
+    }
   })
   .fail((err)=>{
     console.log(err);

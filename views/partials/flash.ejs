@@ -1,4 +1,6 @@
-  <div class="container mt-5">
+  <% if (Object.keys(messages).length > 0){ %>
+
+  <div class="flash">
   <% Object.keys(messages).forEach(function (type) { %>
 
       <div class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
@@ -10,3 +12,5 @@
 
   <% }); %>
   </div>
+
+  <% } %>
