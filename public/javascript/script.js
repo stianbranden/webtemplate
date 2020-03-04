@@ -69,3 +69,15 @@ function removeErrorAlert(item){
     alert.remove();
   }
 }
+
+const hasElem = function(selector){
+  return document.querySelectorAll(selector).length > 0;
+}
+
+$('li.nav-item').each(function(){
+  let item = $(this);
+  if (document.URL.endsWith(item.attr('data-path') )){
+    item.addClass('active');
+    item.children('a').append(' <span class="sr-only">(current)</span>');
+  }
+});

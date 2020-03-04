@@ -1,0 +1,15 @@
+nav {
+  grid-area: nav;
+
+  .icon {
+    font-size: 150%;
+  }
+  .navbar-collapse{
+    justify-content: flex-end;
+  }
+
+  .dropdown-menu {
+    left: -50px;
+    min-width: 0;
+  }
+}

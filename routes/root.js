@@ -6,7 +6,7 @@ const {
   checkNotAuthenticated
 } = require('../config/authenticationChecks');
 
-router.get('/', (req,res)=>{
+router.get('/', checkNotAuthenticated, (req,res)=>{
   res.render('index', {
     projectName
   });

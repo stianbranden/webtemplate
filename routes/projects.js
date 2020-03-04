@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 const Project = require('../models/projects');
+const Article = require('../models/articles');
 const ProjectMembership = require('../models/projectMemberships');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -40,6 +41,13 @@ router.get('/:id', checkAuthenticated, async (req, res)=>{
   const user = req.user;
   try {
     const project = await Project.findById(id).populate({path: 'owner'});
+    let articles = await Article.find({
+      project: project._id
+    });
+    project.content = {
+      articles: articles
+    }
+    console.log({project, articles});
     res.render('project', {projectName, project, user})
   } catch (e) {
     console.log(e);

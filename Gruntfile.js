@@ -29,12 +29,20 @@ module.exports = function(grunt){
       sass: {
         files: ['scss/*.scss','scss/mixins/*.scss', 'scss/utilities/*.scss'],
         tasks: ['sass', 'postcss']
+      },
+      js: {
+        files: ['src/*js'],
+        tasks: ['shell:parcel']
       }
     },
     nodemon: {
       dev: {
         script: 'app.js'
       }
+    },
+    shell: {
+      ls: 'ls ./src',
+      parcel: 'parcel build src/*.js -d public/javascript --no-minify --public-url /javascript'
     },
     concurrent: {
       target:{
@@ -53,8 +61,11 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-shell');
 
 
   //Register tasks
-  grunt.registerTask('default', ['sass', 'postcss', 'concurrent:target'])
+  //grunt.registerTask('default', ['shell:ls']);
+  //grunt.registerTask('default', ['babel']);
+  grunt.registerTask('default', ['sass', 'postcss', 'shell:parcel', 'concurrent:target'])
 }

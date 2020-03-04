@@ -1,0 +1,91 @@
+header {
+  grid-area: header;
+  display: flex;
+
+  svg {
+    height: 45px;
+    width: 90px;
+    $logoColor: white;
+    $checkColor: #059905;
+
+    &.animate {
+      .letter {
+        @for $i from 0 through 6 {
+          &:nth-child(#{7-$i}) {
+            animation-name: makeGreenLetters;
+            animation-duration: 1s;
+            animation-delay: ($i+1)*0.5s;
+            animation-fill-mode: forwards;
+          }
+        }
+      }
+      .box:nth-of-type(2){
+        stroke: $logoColor;
+        animation-name: makeGreen;
+        animation-duration: 1s;
+        animation-delay: 5s;
+        animation-fill-mode: forwards;
+      }
+      .checkmark {
+        stroke-dasharray: 55.15;
+        stroke-dashoffset: 55.15;
+        animation: dash 1s ease 4.5s forwards;
+      }
+      @keyframes makeGreen {
+        to {
+          stroke: $success;
+          stroke-width: 3;
+        }
+      }
+      @keyframes makeGreenLetters {
+        50% {
+          stroke: $success;
+          fill: $success;
+          stroke-width: 3;
+        }
+        to {
+          stroke: $logoColor;
+          fill: $logoColor;
+          stroke-width: 1;
+        }
+      }
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+
+    & > g{
+
+      .letter {
+        fill: $logoColor;
+        stroke: $logoColor;
+      }
+      .box {
+        stroke: $logoColor;
+        stroke-width: 2;
+        fill: none;
+      }
+      .box:nth-of-type(2){
+        stroke: $checkColor;
+        stroke-width: 3;
+      }
+      .checkmark {
+        fill: none;
+        stroke: $checkColor;
+        stroke-width: 3;
+      }
+
+    }
+  }
+
+  a {
+    flex: 1;
+    font-family: 'Roboto Condensed', sans-serif;
+
+    i {
+      font-size: 0.9rem;
+    }
+  }
+}

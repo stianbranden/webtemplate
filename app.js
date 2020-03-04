@@ -23,6 +23,8 @@ const usersRoute = require('./routes/users');
 const apiUsersRoute = require('./routes/api/users');
 const projectsRoute = require('./routes/projects');
 const apiProjectsRoute = require('./routes/api/projects');
+const knowledgeRoute = require('./routes/knowledge');
+const apiKnowledgeRoute = require('./routes/api/knowledge');
 
 //EJS
 app.set('view engine', 'ejs');
@@ -52,13 +54,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next) {
+   res.locals.appname = process.env.PROJECT;
+   res.locals.path   = req.path;
+
+   next();
+});
 
 //Routes
 app.use('/', rootRoute);
 app.use('/users', usersRoute);
 app.use('/projects', projectsRoute);
+app.use('/knowledge', knowledgeRoute);
 app.use('/api/users', apiUsersRoute);
 app.use('/api/projects', apiProjectsRoute);
+app.use('/api/knowledge', apiKnowledgeRoute);
 
 //Mongo connection
 mongoose.connect(process.env.MONGO_DB_URI, {

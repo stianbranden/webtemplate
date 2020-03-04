@@ -1,0 +1,45 @@
+<% let icon = 'icon ion-md-contacts';
+  switch(article.project.projectType){
+    case 'Private':
+      icon = 'icon ion-md-lock';
+      break;
+    case 'Public':
+      icon = 'icon ion-md-globe';
+      break;
+  }
+  let border = '';
+  switch (user._id) {
+    case article.project.owner._id:
+      border = ' border border-warning';
+      break;
+  }
+  var colors = ['blue', 'indigo', 'purple', 'pink', 'red', 'orange', 'yellow', 'green', 'teal', 'cyan', 'gray', 'gray-dark', 'beige'];
+  let selectColorBg = '';
+  if (article.project.color==='white'){
+    selectColorBg = ' bg-gray-dark';
+  }
+  %>
+<section class="main">
+  <div class="card">
+    <div class="card-header grid-2-1 border-<%= article.project.color %>"><div class="text-left"></div><div class="text-right" title="<%= article.project.projectType %> project"><i class="<%= icon %>"></i></div></div>
+    <div class="card-body">
+      <div class="input-group hide">
+        <input disabled id="id-field" type="text" class="form-control" name="id" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= article.data %>" data-url="/api/knowledge/new/<%= article.project.id %>">
+      </div>
+      <div id="knowledge-editor" class="editorjs bg-light"></div>
+    </div>
+  </div>
+</section>
+<section class="sub bg-dark text-white-50">
+  <div class="pt-4 text-center">
+    <p class="lead m-0">Actions</p>
+    <p>
+      <button id="save-knowledge" class="btn btn-success">Save</button>
+      <a href="project/<%= article.project.id %>" class="btn btn-warning">Cancel</a>
+      <button id="delete-knowledge" class="btn btn-danger">Delete</button>
+    </p>
+  </div>
+</section>
+<section class="sidebar">
+  <p class="lead">Sidebar stuff</p>
+</section>

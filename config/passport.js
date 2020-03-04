@@ -19,9 +19,10 @@ module.exports = (passport)=>{
     }
 
     try {
-      console.log(user);
+      /*console.log(user);
       console.log(password);
-      console.log(user.password);
+      console.log(user.password);*/
+      console.log('Attempting login for user ' + user.email);
       if (await bcrypt.compare(password, user.password)) {
         return done(null, user)
       } else {

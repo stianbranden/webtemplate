@@ -1,0 +1,19 @@
+footer {
+  grid-area: footer;
+  display: flex;
+  align-items: flex-end;
+
+  & > div {
+    flex: 1;
+  }
+
+  .footer-copyright > a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .footer-link {
+    color: white;
+    text-decoration: underline;
+  }
+}

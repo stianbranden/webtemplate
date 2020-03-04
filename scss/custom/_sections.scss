@@ -1,0 +1,47 @@
+section.main {
+  grid-area: main;
+  overflow: auto;
+
+  .jumbotron {
+    border-radius: 0;
+    height: 100%;
+
+    img {
+      max-width: 250px;
+    }
+  }
+  .card {
+    border-radius: 0;
+    //height: 100%;
+
+    .card-header {
+      border-width: thick;
+    }
+
+  }
+}
+
+section.sidebar {
+  grid-area: sidebar;
+  overflow: hidden;
+  background-color: #fff;
+  img {
+    height: 100%;
+  }
+}
+
+
+section.sub {
+  grid-area: sub;
+  display: flex;
+
+  & > div {
+    flex: 1;
+
+    .btn {
+      min-width: 200px;
+      margin-top: 1em;
+      margin-left: 0.5em;
+    }
+  }
+}
